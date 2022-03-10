@@ -1,68 +1,89 @@
-import { merge } from 'lodash';
-import ReactApexChart from 'react-apexcharts';
-// material
-import { Card, CardHeader, Box } from '@mui/material';
-//
-import { BaseOptionChart } from '../../../components/charts';
+import { merge } from "lodash";
+import ReactApexChart from "react-apexcharts";
+import { Card, CardHeader, Box } from "@mui/material";
+import { BaseOptionChart } from "../../../components/charts";
+import { useEffect, useState } from "react";
 
-// ----------------------------------------------------------------------
+export default function AppWebsiteVisits({ infoChart }) {
+  const [thisInfoChart, setThisInfoChart] = useState({ levelRecords: [] });
 
-const CHART_DATA = [
-  {
-    name: 'Team A',
-    type: 'column',
-    data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
-  },
-  {
-    name: 'Team B',
-    type: 'area',
-    data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
-  },
-  {
-    name: 'Team C',
-    type: 'line',
-    data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
-  }
-];
-
-export default function AppWebsiteVisits() {
-  const chartOptions = merge(BaseOptionChart(), {
-    stroke: { width: [0, 2, 3] },
-    plotOptions: { bar: { columnWidth: '11%', borderRadius: 4 } },
-    fill: { type: ['solid', 'gradient', 'solid'] },
-    labels: [
-      '01/01/2003',
-      '02/01/2003',
-      '03/01/2003',
-      '04/01/2003',
-      '05/01/2003',
-      '06/01/2003',
-      '07/01/2003',
-      '08/01/2003',
-      '09/01/2003',
-      '10/01/2003',
-      '11/01/2003'
-    ],
-    xaxis: { type: 'datetime' },
+  const chartInitOptions = merge(BaseOptionChart(), {
+    stroke: { width: [2] },
+    plotOptions: { bar: { columnWidth: "11%", borderRadius: 4 } },
+    fill: { type: ["solid"] },
+    labels: [],
+    xaxis: { type: "datetime" },
+    yaxis: {
+      min: 0,
+      max: 1.5,
+      forceNiceScale: false,
+      tickAmount: 3,
+      labels: {
+        formatter: function (val) {
+          let label = "";
+          if (val === 1) label = "✔";
+          if (val === 0) label = "✖";
+          return label;
+        },
+        style: { fontSize: "20px" },
+      },
+    },
     tooltip: {
       shared: true,
       intersect: false,
       y: {
         formatter: (y) => {
-          if (typeof y !== 'undefined') {
-            return `${y.toFixed(0)} visits`;
+          if (typeof y !== "undefined") {
+            return `${y === 1 ? "Completado" : "No completado"}`;
           }
           return y;
-        }
-      }
-    }
+        },
+      },
+    },
   });
+
+  const [chartData, setChartData] = useState({
+    name: "Avance del niño",
+    type: "line",
+    data: [],
+  });
+
+  const [chartOptions, setChartOptions] = useState(chartInitOptions);
+  const [thisTitle, setThisTitle] = useState("");
+
+  const initInfoChart = () => {
+    setThisInfoChart(infoChart);
+  };
+
+  const initData = () => {
+    const data = [];
+    const labels = [];
+    if (thisInfoChart) {
+      thisInfoChart.levelRecords.forEach((element) => {
+        data.push(element.successful === true ? 1 : 0);
+        labels.push(element.date);
+      });
+      setChartData({ chartData, data: data });
+      setChartOptions({ chartOptions, labels: labels });
+      setThisTitle(thisInfoChart.description);
+    }
+  };
+
+  useEffect(() => {
+    initInfoChart();
+    initData();
+  }, [infoChart, thisInfoChart]);
 
   return (
     <Card>
-      <CardHeader title="Website Visits" subheader="(+43%) than last year" />
+      <CardHeader title={thisTitle} subheader="Resultados por fecha" />
       <Box sx={{ p: 3, pb: 1 }} dir="ltr">
-        <ReactApexChart type="line" series={CHART_DATA} options={chartOptions} height={364} />
+        <ReactApexChart
+          type="line"
+          series={[chartData]}
+          options={chartOptions}
+          height={200}
+        />
       </Box>
     </Card>
   );

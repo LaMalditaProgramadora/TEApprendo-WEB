@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Iconify from "../../../components/Iconify";
 import { login } from "./../../../services/LoginService";
+import { saveStorage, resetStorage } from "./../../../utils/storage";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -13,8 +14,7 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false);
 
   const initLocalStorage = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("idChild");
+    resetStorage();
   };
 
   useEffect(() => {
@@ -40,12 +40,10 @@ export default function LoginForm() {
       setLoading(true);
       login(loginData).then(
         (data) => {
-          console.log(data);
           if (data.idResponse) {
             switch (data.idResponse) {
               case 1:
-                localStorage.setItem("token", data.token);
-                localStorage.setItem("idChild", data.specialist.idChild);
+                saveStorage(data);
                 navigate("/dashboard/app", { replace: true });
                 break;
               case -3:
