@@ -1,7 +1,7 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DashboardNavbar from "../layouts/dashboard/DashBoardNavbar";
+import DashboardNavbar from "./DashBoardNavbar";
 import { getDashboardCategory } from "../services/LevelRecordService";
 import Page from "../components/Page";
 import { AppCurrentVisits, AppWebsiteVisits } from "../sections/dashboard/app";

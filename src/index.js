@@ -4,7 +4,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import 'simplebar/src/simplebar.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <HelmetProvider>
@@ -14,5 +13,3 @@ ReactDOM.render(
   </HelmetProvider>,
   document.getElementById('root')
 );
-
-serviceWorker.unregister();

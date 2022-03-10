@@ -1,7 +1,7 @@
 import { AppBar, Box, Stack, Toolbar } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
-import Searchbar from "./Searchbar";
+import Searchbar from "../layouts/dashboard/Searchbar";
 
 const DRAWER_WIDTH = 280;
 const APPBAR_MOBILE = 64;
