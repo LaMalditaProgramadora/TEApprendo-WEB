@@ -9,9 +9,13 @@ import {
 import { alpha, styled } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import Iconify from "../../components/Iconify";
-import { getCategories } from "src/services/CategoryService";
-import { getTopicsByIdCategory } from "src/services/TopicService";
-import { getDashboardCategory, getDashboardLevel, getDashboardTopic } from "src/services/LevelRecordService";
+import { getCategories } from "../../services/CategoryService";
+import { getTopicsByIdCategory } from "../../services/TopicService";
+import {
+  getDashboardCategory,
+  getDashboardLevel,
+  getDashboardTopic,
+} from "../../services/LevelRecordService";
 
 const APPBAR_MOBILE = 64;
 const APPBAR_DESKTOP = 92;
