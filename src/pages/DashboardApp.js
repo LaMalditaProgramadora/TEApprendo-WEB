@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import DashboardNavbar from "../layouts/dashboard/DashBoardNavbar";
 import { getDashboardCategory } from "../services/LevelRecordService";
 import Page from "../components/Page";
-import { AppCurrentVisits, AppWebsiteVisits } from "../sections/@dashboard/app";
+import { AppCurrentVisits, AppWebsiteVisits } from "../sections/dashboard/app";
 
 export default function DashboardApp() {
   const navigate = useNavigate();

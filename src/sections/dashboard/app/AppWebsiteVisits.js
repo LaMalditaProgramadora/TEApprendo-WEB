@@ -72,6 +72,7 @@ export default function AppWebsiteVisits({ infoChart }) {
   useEffect(() => {
     initInfoChart();
     initData();
+    // eslint-disable-next-line
   }, [infoChart, thisInfoChart]);
 
   return (
