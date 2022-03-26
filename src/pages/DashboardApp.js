@@ -36,7 +36,6 @@ export default function DashboardApp() {
   useEffect(() => {
     validateLogin();
     getDashboardCategoryFromApi();
-    // eslint-disable-next-line
   }, []);
 
   return (
