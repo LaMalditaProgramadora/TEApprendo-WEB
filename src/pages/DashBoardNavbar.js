@@ -1,4 +1,4 @@
-import { Box, Stack, Toolbar } from "@mui/material";
+import { Box, Stack} from "@mui/material";
 import PropTypes from "prop-types";
 import Searchbar from "../layouts/dashboard/Searchbar";
 import { RootStyle, ToolbarStyle } from "./styles/DashBoardNavBarStyle";
