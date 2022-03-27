@@ -6,8 +6,6 @@ import { fShortenNumber } from '../../../utils/formatNumber';
 // component
 import Iconify from '../../../components/Iconify';
 
-// ----------------------------------------------------------------------
-
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: 'none',
   textAlign: 'center',
@@ -31,8 +29,6 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
     0.24
   )} 100%)`
 }));
-
-// ----------------------------------------------------------------------
 
 const TOTAL = 1352831;
 

@@ -7,8 +7,6 @@ import { Box, Button, Typography, Container } from '@mui/material';
 import { MotionContainer, varBounceIn } from '../components/animate';
 import Page from '../components/Page';
 
-// ----------------------------------------------------------------------
-
 const RootStyle = styled(Page)(({ theme }) => ({
   display: 'flex',
   minHeight: '100%',
@@ -16,8 +14,6 @@ const RootStyle = styled(Page)(({ theme }) => ({
   paddingTop: theme.spacing(15),
   paddingBottom: theme.spacing(10)
 }));
-
-// ----------------------------------------------------------------------
 
 export default function Page404() {
   return (

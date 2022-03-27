@@ -41,7 +41,6 @@ export default function AppCurrentVisits({ infoChart }) {
 
   useEffect(() => {
     initData();
-    // eslint-disable-next-line
   }, [infoChart]);
 
   const chartOptions = merge(BaseOptionChart(), {

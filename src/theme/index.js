@@ -9,8 +9,6 @@ import typography from './typography';
 import componentsOverride from './overrides';
 import shadows, { customShadows } from './shadows';
 
-// ----------------------------------------------------------------------
-
 ThemeConfig.propTypes = {
   children: PropTypes.node
 };
