@@ -1,6 +1,5 @@
 import { Avatar, Box, Drawer, Link, Typography } from "@mui/material";
 // material
-import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
@@ -10,23 +9,9 @@ import NavSection from "../../components/NavSection";
 import Scrollbar from "../../components/Scrollbar";
 import useResponsive from "../../hooks/useResponsive";
 import sidebarConfig from "./SidebarConfig";
+import { RootStyle, AccountStyle } from "../styles/DashBoardSidebarStyle";
 
 const DRAWER_WIDTH = 280;
-
-const RootStyle = styled("div")(({ theme }) => ({
-  [theme.breakpoints.up("lg")]: {
-    flexShrink: 0,
-    width: DRAWER_WIDTH,
-  },
-}));
-
-const AccountStyle = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(2, 2.5),
-  borderRadius: Number(theme.shape.borderRadius) * 1.5,
-  backgroundColor: theme.palette.grey[500_12],
-}));
 
 DashboardSidebar.propTypes = {
   isOpenSidebar: PropTypes.bool,

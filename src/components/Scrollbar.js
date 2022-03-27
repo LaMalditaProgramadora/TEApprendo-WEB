@@ -4,8 +4,6 @@ import SimpleBarReact from 'simplebar-react';
 import { alpha, styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
 
-// ----------------------------------------------------------------------
-
 const RootStyle = styled('div')({
   flexGrow: 1,
   height: '100%',

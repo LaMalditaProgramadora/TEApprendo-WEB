@@ -2,8 +2,6 @@
 import { alpha, useTheme } from '@mui/material/styles';
 import { GlobalStyles } from '@mui/material';
 
-// ----------------------------------------------------------------------
-
 export function BaseOptionChartStyle() {
   const theme = useTheme();
 
@@ -92,7 +90,6 @@ export default function BaseOptionChart() {
     chart: {
       toolbar: { show: false },
       zoom: { enabled: false },
-      // animations: { enabled: false },
       foreColor: theme.palette.text.disabled,
       fontFamily: theme.typography.fontFamily
     },
