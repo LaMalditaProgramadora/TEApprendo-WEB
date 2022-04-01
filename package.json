@@ -59,7 +59,5 @@
     "simplebar": "^5.3.6",
     "simplebar-react": "^2.3.6",
     "yup": "^0.32.11"
-  },
-  "devDependencies": {
   }
 }
