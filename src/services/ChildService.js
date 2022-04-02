@@ -1,12 +1,11 @@
 import httpClient from "../utils/httpClient";
+import { getToken } from "./StorageService";
 
-export const getChild = async () => {
-  const token = localStorage.getItem("token");
-  const idChild = localStorage.getItem("idChild");
+export const getChild = async (idChild) => {
   const data = await httpClient
     .get(`/children/listByIdChild?idChild=${idChild}`, {
       headers: {
-        Authorization: token,
+        Authorization: getToken(),
       },
     })
     .then((v) => v.data);

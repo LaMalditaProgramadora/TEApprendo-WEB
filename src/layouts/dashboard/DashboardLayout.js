@@ -1,8 +1,7 @@
-
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import DashboardSidebar from "./DashboardSidebar";
-import { RootStyle } from "../styles/DashBoardSidebarStyle";
+import { RootStyle } from "../styles/indexStyle";
 import { MainStyle } from "../styles/indexStyle";
 
 export default function DashboardLayout() {

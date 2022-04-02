@@ -1,9 +1,9 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 // components
-import Logo from '../components/Logo';
-import {HeaderStyle} from "./styles/LogoOnlyLayoutStyle";
+import Logo from "../components/Logo";
+import { HeaderStyle } from "./styles/LogoOnlyLayoutStyle";
 
-export default function LogoOnlyLayout() {
+const LogoOnlyLayout = () => {
   return (
     <>
       <HeaderStyle>
@@ -12,4 +12,6 @@ export default function LogoOnlyLayout() {
       <Outlet />
     </>
   );
-}
+};
+
+export default LogoOnlyLayout;

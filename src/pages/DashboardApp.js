@@ -5,6 +5,11 @@ import DashboardNavbar from "./DashBoardNavbar";
 import { getDashboardCategory } from "../services/LevelRecordService";
 import Page from "../components/Page";
 import { AppCurrentVisits, AppWebsiteVisits } from "../sections/dashboard/app";
+import {
+  getChildName,
+  getIdChild,
+  getToken,
+} from "src/services/StorageService";
 
 export default function DashboardApp() {
   const navigate = useNavigate();
@@ -12,13 +17,10 @@ export default function DashboardApp() {
   const [infoCharts, setInfoCharts] = useState([]);
 
   const validateLogin = () => {
-    const token = localStorage.getItem("token");
-    const idChild = localStorage.getItem("idChild");
-    const nameChild = localStorage.getItem("nameChild");
-    if (!token || !idChild) {
+    if (getToken() === undefined || getIdChild() === undefined) {
       navigate("/login", { replace: true });
     } else {
-      setTitle(nameChild);
+      setTitle(getChildName());
     }
   };
 
@@ -27,7 +29,7 @@ export default function DashboardApp() {
     setInfoCharts(data);
   };
 
-  const getDashboardCategoryFromApi = () => {
+  const getDashboardCategoryFromApi = async () => {
     getDashboardCategory().then((data) => {
       setInfoCharts(data);
     });
@@ -36,6 +38,7 @@ export default function DashboardApp() {
   useEffect(() => {
     validateLogin();
     getDashboardCategoryFromApi();
+    // eslint-disable-next-line
   }, []);
 
   return (

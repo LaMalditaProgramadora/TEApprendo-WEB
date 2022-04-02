@@ -1,6 +1,4 @@
-import {
-  Snackbar,
-} from "@mui/material";
+import { Snackbar } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -10,7 +8,7 @@ import TextField from "@mui/material/TextField";
 import { addObservation } from "src/services/ObservationService";
 import * as React from "react";
 
-const CreateObservationDialog = ({ open, setOpen}) => {
+const CreateObservationDialog = ({ open, setOpen }) => {
   const [snackbar, setSnackbar] = React.useState({ open: false, message: "" });
 
   const handleClose = () => {
@@ -53,7 +51,6 @@ const CreateObservationDialog = ({ open, setOpen}) => {
         <DialogTitle>Crear observación</DialogTitle>
         <DialogContent>
           <TextField
-            autoFocus
             margin="dense"
             id="title"
             label="Título"
@@ -64,7 +61,6 @@ const CreateObservationDialog = ({ open, setOpen}) => {
           <br></br>
           <br></br>
           <TextField
-            autoFocus
             margin="dense"
             id="description"
             label="Descripción"
@@ -73,6 +69,7 @@ const CreateObservationDialog = ({ open, setOpen}) => {
             rows={4}
             fullWidth
             name="description"
+            inputProps={{ maxLength: 1000 }}
           />
           <br></br>
         </DialogContent>

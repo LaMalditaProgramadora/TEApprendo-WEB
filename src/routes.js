@@ -1,5 +1,5 @@
 import { Navigate, useRoutes } from "react-router-dom";
-import DashboardLayout from "./layouts/dashboard";
+import DashboardLayout from "./layouts/dashboard/DashboardLayout";
 import LogoOnlyLayout from "./layouts/LogoOnlyLayout";
 import DashboardApp from "./pages/DashboardApp";
 import ChildProfile from "./pages/ChildProfile";

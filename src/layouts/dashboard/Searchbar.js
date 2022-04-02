@@ -1,20 +1,17 @@
 import { LoadingButton } from "@mui/lab";
 import {
-  FormControl,
-  IconButton,
-  InputLabel,
+  FormControl, InputLabel,
   MenuItem,
-  Select,
+  Select
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import Iconify from "../../components/Iconify";
 import { getCategories } from "../../services/CategoryService";
-import { getTopicsByIdCategory } from "../../services/TopicService";
 import {
   getDashboardCategory,
   getDashboardLevel,
-  getDashboardTopic,
+  getDashboardTopic
 } from "../../services/LevelRecordService";
+import { getTopicsByIdCategory } from "../../services/TopicService";
 import { SearchbarStyle } from "../styles/SearchbarStyle";
 
 export default function Searchbar({ handleSearch }) {
@@ -106,9 +103,6 @@ export default function Searchbar({ handleSearch }) {
 
   return (
     <div>
-      <IconButton>
-        <Iconify icon="eva:search-fill" width={20} height={20} />
-      </IconButton>
       <SearchbarStyle>
         <FormControl
           fullWidth

@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Iconify from "../../../components/Iconify";
 import { login } from "./../../../services/LoginService";
-import { saveStorage, resetStorage } from "./../../../utils/storage";
+import { saveAll } from "./../../../services/StorageService";
+import { removeAll } from "src/services/StorageService";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false);
 
   const initLocalStorage = () => {
-    resetStorage();
+    removeAll();
   };
 
   useEffect(() => {
@@ -25,6 +26,37 @@ export default function LoginForm() {
     username: Yup.string().required("El usuario es requerido"),
     password: Yup.string().required("La contraseña es requerida"),
   });
+
+  const loginFromApi = async (loginData) => {
+    login(loginData).then(
+      (data) => {
+        if (data.idResponse) {
+          switch (data.idResponse) {
+            case 1:
+              saveAll(data);
+              navigate("/dashboard/app", { replace: true });
+              break;
+            case -3:
+              setErrors({ password: "Contraseña incorrecta" });
+
+              break;
+            case -2:
+              setErrors({ username: "Usuario incorrecto" });
+              break;
+            default:
+              setErrors({ password: "Error en el servidor" });
+              break;
+          }
+        }
+        setLoading(false);
+      },
+      (error) => {
+        console.log(error);
+        setErrors({ password: "Error en el servidor" });
+        setLoading(false);
+      }
+    );
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -38,34 +70,7 @@ export default function LoginForm() {
         password: getFieldProps("password").value,
       };
       setLoading(true);
-      login(loginData).then(
-        (data) => {
-          if (data.idResponse) {
-            switch (data.idResponse) {
-              case 1:
-                saveStorage(data);
-                navigate("/dashboard/app", { replace: true });
-                break;
-              case -3:
-                setErrors({ password: "Contraseña incorrecta" });
-
-                break;
-              case -2:
-                setErrors({ username: "Usuario incorrecto" });
-                break;
-              default:
-                setErrors({ password: "Error en el servidor" });
-                break;
-            }
-          }
-          setLoading(false);
-        },
-        (error) => {
-          console.log(error);
-          setErrors({ password: "Error en el servidor" });
-          setLoading(false);
-        }
-      );
+      loginFromApi(loginData);
     },
   });
 

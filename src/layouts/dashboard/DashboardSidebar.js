@@ -91,6 +91,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
               width: DRAWER_WIDTH,
               bgcolor: "background.default",
               borderRightStyle: "dashed",
+              mr: isOpenSidebar === true ? DRAWER_WIDTH : 0,
             },
           }}
         >
