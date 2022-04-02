@@ -1,45 +1,71 @@
-import { Container,Typography,TextField, Table } from "@mui/material";
-import { useEffect} from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Page from "../components/Page";
 import { Stack } from "@mui/material";
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import { TableBody } from "@mui/material";
-import Paper from '@mui/material/Paper';
+import { Grid } from "@mui/material"; 
+import Page from "../components/Page";
+import { Container,Typography} from "@mui/material";
+import { getObservation } from "src/services/ObservationService";
+import NoteCard from "src/components/NoteCard";
+import AddTaskIcon from "@mui/icons-material/AddTask";
+import CreateObservationDialog from "src/layouts/dashboard/dialogs/createObservationDialog";
 
 export default function Observation(){
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [observations, setObservations] = useState([]);
+  const [openCreateObservation, setOpenCreateObservation] = useState(false);
 
-    const token = localStorage.getItem("token");
-    const idChild = localStorage.getItem("idChild");
+  const token = localStorage.getItem("token");
+  const idChild = localStorage.getItem("idChild");
 
-    const validateLogin = () => {
-        if (!token || !idChild) {
-          navigate("/login", { replace: true });
-        } else {
-        }
-    };
+  const getObservationsfromApi = () =>{
+    getObservation().then((data) => {
+      setObservations(data)
+    });
+  };
 
-    useEffect(() => {
+  const validateLogin = () => {
+    if (!token || !idChild) {
+        navigate("/login", { replace: true });
+    } else {
+    }
+  };
+
+  useEffect(() => {
         validateLogin();
-      }, []);
+        getObservationsfromApi();
+  }, []);
 
-    return (
-        <Page title="TEApprendo | Kid Profile">
-          <Container maxWidth="sm">
-              <Stack sx={{ mb: 5 }}>
-                <Typography variant="h4" gutterBottom>
-                  Observaciones
-                </Typography>
-              </Stack>
-              <Stack spacing={5}>
-                
-                
-              </Stack>
-          </Container>
-          </Page>
-      );
+  return (
+      <Page title="TEApprendo | Kid Profile">
+        <Container maxWidth="md">
+          <Stack sx={{ mb: 4 }}>
+            <Typography variant="h4" gutterBottom>
+              Observaciones
+            </Typography>
+          </Stack>
+          <CreateObservationDialog
+            open={openCreateObservation}
+            setOpen={setOpenCreateObservation}
+          ></CreateObservationDialog>
+          <Grid>
+            <AddTaskIcon
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                setOpenCreateObservation(true);
+              }}
+            /> 
+          </Grid>
+          <Grid container >
+              {observations.map((observation,i) => (
+                <Grid key={i} item xs={12} md={5} lg={4}>
+                  <NoteCard 
+                    note = {observation}
+                  />
+                </Grid> 
+              ))}
+          </Grid>
+          <br></br>
+        </Container>
+      </Page>
+    );
 }
