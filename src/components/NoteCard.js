@@ -1,4 +1,5 @@
 import {
+  Container,
     Snackbar,
   } from "@mui/material";
 import Card from '@mui/material/Card';
@@ -34,16 +35,13 @@ export default function NoteCard({note}){
         setOpen={setOpenUpdateObservation}
       ></UpdateObservationDialog>
       <br></br>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardHeader
-        title={note.title}
-        />
-        <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {note.description}
-          </Typography>
-        </CardContent>
-        <CardActions>
+      <Card>
+        <Container sx={{display: "flex"}}>
+          <CardHeader
+            title={note.title}
+            sx={{mb:3}}
+          />
+          <CardActions>
             <EditIcon
                 style={{ cursor: "pointer" }}
                 onClick={() => {
@@ -55,7 +53,15 @@ export default function NoteCard({note}){
                 style={{ cursor: "pointer" }}
                 onClick={() => removeObservationFromApi(note.idObservation)}
             />
-        </CardActions>
+          </CardActions>
+        </Container>
+        
+        <CardContent>
+        <Typography variant="body2" color="text.secondary">
+          {note.description}
+          </Typography>
+        </CardContent>
+        
         <Snackbar
           open={snackbar.open}
           autoHideDuration={4000}

@@ -19,14 +19,18 @@ const UpdateObservationDialog = ({ observation, open, setOpen }) => {
       title: formData.get("title"),
       description: formData.get("description"),
     };
-    if (obsAux !== "") {
+
+    if (formData.get("title") === "") {
+      setSnackbar({ open: true, message: "El título es requerido" });
+    } else if (formData.get("description") === "") {
+      setSnackbar({ open: true, message: "La observación es requerida" });
+    } 
+    else {
       updateObservation(obsAux).then((data) => {
         setSnackbar({ open: true, message: "Actualización exitosa" });
         window.location.reload(false);
         setOpen(false);
       });
-    } else {
-      setSnackbar({ open: true, message: "Ingrese todos los campos" });
     }
   };
 
@@ -44,7 +48,7 @@ const UpdateObservationDialog = ({ observation, open, setOpen }) => {
         component="form"
         onSubmit={handleSubmit}
       >
-        <DialogTitle>Actualizar Tarea</DialogTitle>
+        <DialogTitle>Modificar Observación</DialogTitle>
         <DialogContent>
           <TextField
             margin="dense"
@@ -73,7 +77,7 @@ const UpdateObservationDialog = ({ observation, open, setOpen }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button type="submit">Actualizar</Button>
+          <Button type="submit">Modificar</Button>
         </DialogActions>
       </Dialog>
       <Snackbar

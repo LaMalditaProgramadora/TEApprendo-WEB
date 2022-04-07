@@ -10,7 +10,7 @@ const sidebarConfig = [
     icon: getIcon("eva:pie-chart-2-fill"),
   },
   {
-    title: "Perfil del niño",
+    title: "Perfil TEA",
     path: "/dashboard/childProfile",
     icon: getIcon("tabler:mood-kid"),
   },

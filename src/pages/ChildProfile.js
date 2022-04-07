@@ -1,6 +1,4 @@
-import {
-  Container, Stack,
-  Table,
+import { Stack,
   TableBody,
   TextField,
   Typography
@@ -10,11 +8,14 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getChild } from "src/services/ChildService";
 import { getIdChild, getToken } from "src/services/StorageService";
 import Page from "../components/Page";
+import { ContainerStyle, TableStyle } from "./styles/ChildProfileStyle";
+
 
 export default function ChildProfile() {
   const navigate = useNavigate();
@@ -59,10 +60,10 @@ export default function ChildProfile() {
   };
 
   return (
-    <Page title="TEApprendo | Kid Profile">
-      <Container maxWidth="xl">
+    <Page title="TEApprendo | Perfil TEA">
+      <ContainerStyle maxWidth="xl">
         <Stack sx={{ mb: 5 }}>
-          <Typography variant="h4">Perfil del niño</Typography>
+          <Typography variant="h4">Perfil TEA</Typography>
         </Stack>
         <Stack spacing={5}>
           <Stack direction="row" spacing={4}>
@@ -111,7 +112,7 @@ export default function ChildProfile() {
           <Typography variant="h6" gutterBottom>
             Síntomas
           </Typography>
-          <Table sx={{ minWidth: 300 }} aria-label="simple table">
+          <TableStyle sx={{ minWidth: 300 }} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell sx={{ borderBottom: 1 }}>Id</TableCell>
@@ -128,9 +129,9 @@ export default function ChildProfile() {
                 </TableRow>
               ))}
             </TableBody>
-          </Table>
+          </TableStyle>
         </TableContainer>
-      </Container>
+      </ContainerStyle>
     </Page>
   );
 }

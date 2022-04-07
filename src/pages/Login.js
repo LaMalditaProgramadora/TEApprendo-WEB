@@ -8,10 +8,7 @@ export default function Login() {
     <RootStyle title="TEApprendo | Login">
       <AuthLayout />
       <SectionStyle sx={{ display: { xs: "none", md: "flex" } }}>
-        <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-          TEApprendo
-        </Typography>
-        <img src="/static/illustrations/illustration_login.png" alt="login" />
+        <img src="/static/illustrations/banner.jpg" alt="login" />
       </SectionStyle>
       <Container maxWidth="sm">
         <ContentStyle>
