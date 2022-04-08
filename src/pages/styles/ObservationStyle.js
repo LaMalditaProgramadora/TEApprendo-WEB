@@ -1,6 +1,7 @@
 import { Container, styled } from "@mui/material";
 
-export const ContainerStyle = styled(Container)(({}) => ({
+// eslint-disable-next-line
+export const ContainerStyle = styled(Container)(() => ({
     marginTop: -95,
     marginLeft: 20,
   }));

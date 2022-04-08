@@ -1,14 +1,8 @@
-import { Stack,
-  TableBody,
-  TextField,
-  Typography
-} from "@mui/material";
-import Paper from "@mui/material/Paper";
+import { Stack, TableBody, TextField, Typography } from "@mui/material";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getChild } from "src/services/ChildService";
@@ -22,7 +16,7 @@ export default function ChildProfile() {
   const [child, setChild] = useState({
     names: "",
     lastNames: "",
-    birthday: "",
+    birthday: "01/01/2000",
     gender: "",
     asdLevel: "",
     symptoms: [],
@@ -54,10 +48,6 @@ export default function ChildProfile() {
     getChildFromApi();
     // eslint-disable-next-line
   }, []);
-
-  const tableStyle = {
-    margin: "30px 0",
-  };
 
   return (
     <Page title="TEApprendo | Perfil TEA">
@@ -108,11 +98,9 @@ export default function ChildProfile() {
             />
           </Stack>
         </Stack>
-        <TableContainer component={Paper} style={tableStyle}>
-          <Typography variant="h6" gutterBottom>
-            Síntomas
-          </Typography>
-          <TableStyle sx={{ minWidth: 300 }} aria-label="simple table">
+        <TableContainer sx={{mt: 5, p:0}}>
+          <TableStyle aria-label="simple table">
+            <Typography variant="h6">Síntomas</Typography>
             <TableHead>
               <TableRow>
                 <TableCell sx={{ borderBottom: 1 }}>Id</TableCell>

@@ -1,6 +1,5 @@
 import { LoadingButton } from "@mui/lab";
-import { Container, Grid, Stack, Typography } from "@mui/material";
-import { styled } from "@mui/system";
+import { Grid, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NoteCard from "src/components/NoteCard";
@@ -47,7 +46,6 @@ export default function Observation() {
           <LoadingButton
             variant="contained"
             loading={false}
-            style={{ width: 150 }}
             onClick={() => {
               setOpenCreateObservation(true);
             }}
@@ -55,12 +53,18 @@ export default function Observation() {
             Registrar
           </LoadingButton>
         </Grid>
-        <Grid container sx={{ display: 'block'}}>
-          {observations.map((observation, i) => (
-            <Grid key={i} item xs={12} md={5} lg={4}>
-              <NoteCard note={observation} />
-            </Grid>
-          ))}
+        <Grid container sx={{ display: "block" }}>
+          {observations.length === 0 ? (
+            <Typography sx={{ mt: 3 }}>
+              No se registraron observaciones.
+            </Typography>
+          ) : (
+            observations.map((observation, i) => (
+              <Grid key={i} item sx={{ pr: 5 }}>
+                <NoteCard note={observation} />
+              </Grid>
+            ))
+          )}
         </Grid>
         <br></br>
       </ContainerStyle>

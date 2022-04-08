@@ -1,67 +1,63 @@
-import {
-  Container,
-    Snackbar,
-  } from "@mui/material";
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Typography from '@mui/material/Typography';
+import { Container, Snackbar } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
-import UpdateObservationDialog from 'src/layouts/dashboard/dialogs/updateObservationDialog';
-import { removeObservation } from 'src/services/ObservationService';
+import UpdateObservationDialog from "src/layouts/dashboard/dialogs/updateObservationDialog";
+import { removeObservation } from "src/services/ObservationService";
 
-export default function NoteCard({note}){
-    const [snackbar, setSnackbar] = useState({ open: false, message: "" });
-    const [updateObservation, setUpdateObservation] = useState({});
-    const [openUpdateObservation, setOpenUpdateObservation] = useState(false);
+export default function NoteCard({ note }) {
+  const [snackbar, setSnackbar] = useState({ open: false, message: "" });
+  const [updateObservation, setUpdateObservation] = useState({});
+  const [openUpdateObservation, setOpenUpdateObservation] = useState(false);
 
-    const removeObservationFromApi = (idObservation) => {
-        removeObservation(idObservation).then((data) => {
-            setSnackbar({ open: true, message: data.message });
-            if (data.idResponse === 1) {
-                window.location.reload(false);
-            }
-        });
-    };
+  const removeObservationFromApi = (idObservation) => {
+    removeObservation(idObservation).then((data) => {
+      setSnackbar({ open: true, message: data.message });
+      if (data.idResponse === 1) {
+        window.location.reload(false);
+      }
+    });
+  };
 
-    return(
-      <>
+  return (
+    <>
       <UpdateObservationDialog
         observation={updateObservation}
         open={openUpdateObservation}
         setOpen={setOpenUpdateObservation}
       ></UpdateObservationDialog>
       <br></br>
-      <Card>
-        <Container sx={{display: "flex"}}>
-          <CardHeader
-            title={note.title}
-            sx={{mb:3}}
-          />
+      <Card sx={{ minWidth: "100vh" }}>
+        <Container
+          sx={{ display: "flex", mt: 1, justifyContent: "space-between" }}
+        >
+          <CardHeader title={note.title} sx={{ pb: 0, pt: 1, pl: 0 }} />
           <CardActions>
             <EditIcon
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                    setUpdateObservation(note);
-                    setOpenUpdateObservation(true);
-                }}
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                setUpdateObservation(note);
+                setOpenUpdateObservation(true);
+              }}
             />
             <DeleteIcon
-                style={{ cursor: "pointer" }}
-                onClick={() => removeObservationFromApi(note.idObservation)}
+              style={{ cursor: "pointer" }}
+              onClick={() => removeObservationFromApi(note.idObservation)}
             />
           </CardActions>
         </Container>
-        
+
         <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {note.description}
+          <Typography variant="body2" color="text.secondary">
+            {note.description}
           </Typography>
         </CardContent>
-        
+
         <Snackbar
           open={snackbar.open}
           autoHideDuration={4000}
@@ -69,7 +65,6 @@ export default function NoteCard({note}){
           onClose={() => setSnackbar({ open: false, message: "" })}
         />
       </Card>
-      </>
-        
-    )
+    </>
+  );
 }
