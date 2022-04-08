@@ -31,9 +31,12 @@ const CreateObservationDialog = ({ open, setOpen }) => {
       idChild: localStorage.getItem("idChild"),
       title: formData.get("title"),
     };
-    if (observation.name === "" || observation.description === "") {
-      setSnackbar({ open: true, message: "Ingrese todos los campos" });
-    } else {
+    if (observation.title === "") {
+      setSnackbar({ open: true, message: "El título es requerido" });
+    } else if (observation.description === "") {
+      setSnackbar({ open: true, message: "La observación es requerida" });
+    } 
+    else {
       addObservationFromApi(observation);
     }
   };
@@ -48,7 +51,7 @@ const CreateObservationDialog = ({ open, setOpen }) => {
         component="form"
         onSubmit={handleSubmit}
       >
-        <DialogTitle>Crear observación</DialogTitle>
+        <DialogTitle>Registrar observación</DialogTitle>
         <DialogContent>
           <TextField
             margin="dense"
@@ -75,7 +78,7 @@ const CreateObservationDialog = ({ open, setOpen }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button type="submit">Crear</Button>
+          <Button type="submit">Registrar</Button>
         </DialogActions>
       </Dialog>
       <Snackbar
