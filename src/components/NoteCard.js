@@ -32,7 +32,7 @@ export default function NoteCard({ note }) {
         setOpen={setOpenUpdateObservation}
       ></UpdateObservationDialog>
       <br></br>
-      <Card sx={{ minWidth: "100vh" }}>
+      <Card>
         <Container
           sx={{ display: "flex", mt: 1, justifyContent: "space-between" }}
         >

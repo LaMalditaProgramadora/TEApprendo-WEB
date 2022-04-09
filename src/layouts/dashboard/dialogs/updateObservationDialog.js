@@ -24,8 +24,7 @@ const UpdateObservationDialog = ({ observation, open, setOpen }) => {
       setSnackbar({ open: true, message: "El título es requerido" });
     } else if (formData.get("description") === "") {
       setSnackbar({ open: true, message: "La observación es requerida" });
-    } 
-    else {
+    } else {
       updateObservation(obsAux).then((data) => {
         setSnackbar({ open: true, message: "Actualización exitosa" });
         window.location.reload(false);
@@ -74,11 +73,14 @@ const UpdateObservationDialog = ({ observation, open, setOpen }) => {
             inputProps={{ maxLength: 1000 }}
           />
           <br></br>
+          <br></br>
+          <DialogActions sx={{ pr: 0 }}>
+            <Button onClick={handleClose}>Cancelar</Button>
+            <Button variant="contained" type="submit">
+              Modificar
+            </Button>
+          </DialogActions>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
-          <Button type="submit">Modificar</Button>
-        </DialogActions>
       </Dialog>
       <Snackbar
         open={snackbar.open}

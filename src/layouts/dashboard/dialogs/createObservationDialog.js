@@ -35,8 +35,7 @@ const CreateObservationDialog = ({ open, setOpen }) => {
       setSnackbar({ open: true, message: "El título es requerido" });
     } else if (observation.description === "") {
       setSnackbar({ open: true, message: "La observación es requerida" });
-    } 
-    else {
+    } else {
       addObservationFromApi(observation);
     }
   };
@@ -75,11 +74,14 @@ const CreateObservationDialog = ({ open, setOpen }) => {
             inputProps={{ maxLength: 1000 }}
           />
           <br></br>
+          <br></br>
+          <DialogActions sx={{pr: 0}}>
+            <Button onClick={handleClose}>Cancelar</Button>
+            <Button variant="contained" type="submit">
+              Registrar
+            </Button>
+          </DialogActions>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
-          <Button type="submit">Registrar</Button>
-        </DialogActions>
       </Dialog>
       <Snackbar
         open={snackbar.open}
