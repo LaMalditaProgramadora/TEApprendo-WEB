@@ -33,7 +33,7 @@ export default function Observation() {
   }, []);
 
   return (
-    <Page title="TEApprendo | Observaciones">
+    <Page title="TEApprendo | Observaciones" sx={{ mr: 5 }}>
       <ContainerStyle maxWidth="xl">
         <Stack sx={{ mb: 4 }}>
           <Typography variant="h4">Observaciones</Typography>
@@ -50,7 +50,7 @@ export default function Observation() {
               setOpenCreateObservation(true);
             }}
           >
-            Registrar
+            Registrar Observación
           </LoadingButton>
         </Grid>
         <Grid container sx={{ display: "block" }}>
@@ -60,7 +60,7 @@ export default function Observation() {
             </Typography>
           ) : (
             observations.map((observation, i) => (
-              <Grid key={i} item sx={{ pr: 5 }}>
+              <Grid key={i} item>
                 <NoteCard note={observation} />
               </Grid>
             ))
